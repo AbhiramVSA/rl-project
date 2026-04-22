@@ -1,0 +1,46 @@
+{
+  "scalar_a2c": {
+    "mean_return": 2.208645820617676,
+    "std_return": 3.415151357650757,
+    "success_rate": 0.5078125,
+    "mean_length": 6.716796875,
+    "cvar10": -1.4531043767929077
+  },
+  "distributional_a2c": {
+    "mean_return": 1.8938851356506348,
+    "std_return": 3.190277099609375,
+    "success_rate": 0.388671875,
+    "mean_length": 7.189453125,
+    "cvar10": -1.1555144786834717
+  },
+  "scalar_config": {
+    "rollout_steps": 16,
+    "total_updates": 220,
+    "batch_envs": 64,
+    "gamma": 0.98,
+    "gae_lambda": 0.95,
+    "lr": 0.0003,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "grad_clip": 1.0,
+    "hidden_dim": 128,
+    "n_quantiles": 31,
+    "cvar_alpha": 0.2,
+    "device": "cpu"
+  },
+  "distributional_config": {
+    "rollout_steps": 16,
+    "total_updates": 260,
+    "batch_envs": 64,
+    "gamma": 0.98,
+    "gae_lambda": 0.95,
+    "lr": 0.0002,
+    "entropy_coef": 0.01,
+    "value_coef": 0.6,
+    "grad_clip": 1.0,
+    "hidden_dim": 128,
+    "n_quantiles": 31,
+    "cvar_alpha": 0.3,
+    "device": "cpu"
+  }
+}

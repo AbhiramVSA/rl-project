@@ -1,0 +1,13 @@
+{
+  "fit": 0.82,
+  "budget": 0.68,
+  "urgency": 0.57,
+  "trust": 0.61,
+  "price_sensitivity": 0.42,
+  "objections": 0.22,
+  "fatigue": 0.18,
+  "stage": 0.54,
+  "info_coverage": 0.63,
+  "time_left": 0.5,
+  "last_action": "present_value"
+}
