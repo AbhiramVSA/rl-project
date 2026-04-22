@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
 
 
-def add_box(ax, xy, width, height, title, body, facecolor, edgecolor="#2a3342", lw=1.3):
+def add_box(ax, xy, width, height, title, body, facecolor, edgecolor="#2a3342", lw=1.2):
     x, y = xy
     patch = FancyBboxPatch(
         (x, y),
@@ -22,7 +22,7 @@ def add_box(ax, xy, width, height, title, body, facecolor, edgecolor="#2a3342", 
         x + 0.03 * width,
         y + 0.68 * height,
         title,
-        fontsize=11,
+        fontsize=9.5,
         fontweight="bold",
         va="center",
         ha="left",
@@ -32,11 +32,11 @@ def add_box(ax, xy, width, height, title, body, facecolor, edgecolor="#2a3342", 
         x + 0.03 * width,
         y + 0.30 * height,
         body,
-        fontsize=10,
+        fontsize=8.5,
         va="center",
         ha="left",
         color="#1f2937",
-        linespacing=1.35,
+        linespacing=1.25,
     )
 
 
@@ -58,127 +58,157 @@ def main() -> None:
     out_dir = Path("figures")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    fig, ax = plt.subplots(figsize=(15, 7.4))
-    ax.set_xlim(0, 1)
+    fig, ax = plt.subplots(figsize=(18, 7.6))
+    ax.set_xlim(0, 1.26)
     ax.set_ylim(0, 1)
     ax.axis("off")
 
     # Group regions
-    ax.add_patch(Rectangle((0.03, 0.50), 0.34, 0.26, fill=False, linestyle=(0, (4, 4)), linewidth=1.2, edgecolor="#6b7280"))
-    ax.text(0.20, 0.77, "state estimation", fontsize=12, ha="center", va="bottom")
+    ax.add_patch(
+        Rectangle(
+            (0.04, 0.44),
+            0.44,
+            0.36,
+            fill=False,
+            linestyle=(0, (4, 4)),
+            linewidth=1.0,
+            edgecolor="#94a3b8",
+        )
+    )
+    ax.text(0.26, 0.81, "State Estimation", fontsize=11, ha="center", va="bottom", color="#334155")
 
-    ax.add_patch(Rectangle((0.20, 0.18), 0.56, 0.57, fill=False, linestyle=(0, (4, 4)), linewidth=1.2, edgecolor="#6b7280"))
-    ax.text(0.48, 0.15, "RL controller", fontsize=12, ha="center", va="top")
+    ax.add_patch(
+        Rectangle(
+            (0.29, 0.12),
+            0.61,
+            0.67,
+            fill=False,
+            linestyle=(0, (4, 4)),
+            linewidth=1.0,
+            edgecolor="#94a3b8",
+        )
+    )
+    ax.text(0.60, 0.10, "RL Controller", fontsize=11, ha="center", va="top", color="#334155")
 
-    ax.add_patch(Rectangle((0.58, 0.38), 0.37, 0.52, fill=False, linestyle=(0, (4, 4)), linewidth=1.2, edgecolor="#6b7280"))
-    ax.text(0.76, 0.35, "deployment loop", fontsize=12, ha="center", va="top")
+    ax.add_patch(
+        Rectangle(
+            (0.77, 0.20),
+            0.43,
+            0.68,
+            fill=False,
+            linestyle=(0, (4, 4)),
+            linewidth=1.0,
+            edgecolor="#94a3b8",
+        )
+    )
+    ax.text(0.985, 0.18, "Deployment Loop", fontsize=11, ha="center", va="top", color="#334155")
 
     add_box(
         ax,
-        (0.05, 0.54),
-        0.15,
-        0.11,
+        (0.07, 0.49),
+        0.20,
+        0.14,
         "Dialogue inputs",
         "history\nCRM features\nprospect signals",
         "#f8fafc",
     )
     add_box(
         ax,
-        (0.24, 0.54),
-        0.16,
-        0.11,
+        (0.31, 0.49),
+        0.20,
+        0.14,
         "Belief encoder $f_\\psi$",
         "state estimate $b_t \\in \\mathbb{R}^d$",
         "#eef2ff",
     )
     add_box(
         ax,
-        (0.46, 0.62),
-        0.18,
-        0.11,
+        (0.56, 0.60),
+        0.24,
+        0.14,
         "Actor head $g_\\theta$",
         "$\\pi_\\theta(a_t\\mid b_t)$",
         "#fee2e2",
     )
     add_box(
         ax,
-        (0.46, 0.42),
-        0.20,
-        0.12,
+        (0.56, 0.35),
+        0.24,
+        0.14,
         "Quantile critic $q_{\\phi,1:N}$",
         "return distribution $Z_\\phi^\\pi(b_t)$",
         "#dcfce7",
     )
     add_box(
         ax,
-        (0.71, 0.62),
-        0.13,
-        0.11,
+        (0.86, 0.60),
+        0.18,
+        0.14,
         "Macro-action",
         "discover\nqualify\nclose ...",
         "#fff7ed",
     )
     add_box(
         ax,
-        (0.69, 0.42),
-        0.16,
-        0.12,
+        (0.86, 0.35),
+        0.18,
+        0.14,
         "Risk summary",
         "mean, variance,\nCVaR, tail risk",
         "#fff7ed",
     )
     add_box(
         ax,
-        (0.88, 0.62),
-        0.08,
-        0.11,
+        (1.08, 0.60),
+        0.12,
+        0.14,
         "Environment",
         "sales dialogue",
         "#f3f4f6",
     )
     add_box(
         ax,
-        (0.86, 0.80),
-        0.11,
-        0.11,
+        (1.03, 0.82),
+        0.18,
+        0.12,
         "Optional response layer",
         "frontier LLM\nor template generator",
         "#f8fafc",
     )
     add_box(
         ax,
-        (0.86, 0.40),
-        0.12,
-        0.12,
+        (1.03, 0.34),
+        0.18,
+        0.14,
         "Reward synthesis",
         "$\\Delta I_t,\\;\\Delta T_t,\\;\\Delta S_t$\n$F_t,\\;O_t,\\;y_t,\\;v_t$",
         "#eef2ff",
     )
     add_box(
         ax,
-        (0.28, 0.22),
-        0.18,
-        0.12,
+        (0.35, 0.14),
+        0.23,
+        0.14,
         "Optimization losses",
         "policy loss\ncritic loss\nentropy regularization",
         "#fff7ed",
     )
 
-    add_arrow(ax, (0.20, 0.595), (0.24, 0.595))
-    add_arrow(ax, (0.40, 0.595), (0.46, 0.675))
-    add_arrow(ax, (0.40, 0.595), (0.46, 0.48))
-    add_arrow(ax, (0.64, 0.675), (0.71, 0.675))
-    add_arrow(ax, (0.66, 0.48), (0.69, 0.48))
-    add_arrow(ax, (0.84, 0.675), (0.88, 0.675))
-    add_arrow(ax, (0.92, 0.80), (0.92, 0.73))
-    add_arrow(ax, (0.84, 0.675), (0.86, 0.675), linestyle="--")
-    add_arrow(ax, (0.92, 0.62), (0.92, 0.52))
-    add_arrow(ax, (0.86, 0.46), (0.46, 0.28))
-    add_arrow(ax, (0.69, 0.48), (0.46, 0.28))
-    add_arrow(ax, (0.37, 0.34), (0.32, 0.54))
+    add_arrow(ax, (0.27, 0.56), (0.31, 0.56))
+    add_arrow(ax, (0.51, 0.56), (0.56, 0.67))
+    add_arrow(ax, (0.51, 0.56), (0.56, 0.42))
+    add_arrow(ax, (0.80, 0.67), (0.86, 0.67))
+    add_arrow(ax, (0.80, 0.42), (0.86, 0.42))
+    add_arrow(ax, (1.04, 0.67), (1.08, 0.67))
+    add_arrow(ax, (1.12, 0.82), (1.12, 0.74))
+    add_arrow(ax, (1.04, 0.67), (1.03, 0.88), linestyle="--")
+    add_arrow(ax, (1.14, 0.60), (1.14, 0.48))
+    add_arrow(ax, (1.03, 0.41), (0.58, 0.21))
+    add_arrow(ax, (1.03, 0.36), (0.58, 0.20))
+    add_arrow(ax, (0.47, 0.28), (0.41, 0.49))
 
-    ax.text(0.675, 0.69, "$a_t$", fontsize=10, color="#374151")
-    ax.text(0.61, 0.32, "$r_t,\\; d_t,\\; o_{t+1}$", fontsize=10, color="#374151")
+    ax.text(0.825, 0.70, "$a_t$", fontsize=9, color="#475569")
+    ax.text(0.80, 0.25, "$r_t,\\; d_t,\\; o_{t+1}$", fontsize=9, color="#475569")
 
     fig.tight_layout()
     fig.savefig(out_dir / "architecture_diagram.png", dpi=240, bbox_inches="tight")
