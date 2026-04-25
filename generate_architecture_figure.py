@@ -56,14 +56,14 @@ def add_arrow(
     end: tuple[float, float],
     color: str = "#1f2937",
     style: str = "-|>",
-    lw: float = 1.65,
+    lw: float = 1.9,
     linestyle: str | tuple[int, tuple[int, ...]] = "-",
 ) -> None:
     arrow = FancyArrowPatch(
         start,
         end,
         arrowstyle=style,
-        mutation_scale=13,
+        mutation_scale=16,
         linewidth=lw,
         color=color,
         linestyle=linestyle,
@@ -76,7 +76,7 @@ def add_elbow(
     ax,
     points: list[tuple[float, float]],
     color: str = "#1f2937",
-    lw: float = 1.65,
+    lw: float = 1.9,
     linestyle: str | tuple[int, tuple[int, ...]] = "-",
 ) -> None:
     """Draw an orthogonal connector with the arrowhead only on the final segment."""
@@ -138,54 +138,54 @@ def main() -> None:
     out_dir = Path("figures")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    fig, ax = plt.subplots(figsize=(16, 4.45))
-    ax.set_xlim(0, 16)
-    ax.set_ylim(0, 4.45)
+    fig, ax = plt.subplots(figsize=(17.2, 4.75))
+    ax.set_xlim(0, 17.2)
+    ax.set_ylim(0, 4.75)
     ax.axis("off")
 
-    add_panel(ax, (0.35, 0.30), 7.3, 3.55, "A. Risk-Sensitive RL Controller")
-    add_panel(ax, (8.05, 0.30), 7.55, 3.55, "B. Deployment / Response Realization")
+    add_panel(ax, (0.35, 0.35), 7.55, 3.75, "A. Risk-Sensitive RL Controller")
+    add_panel(ax, (8.20, 0.35), 8.40, 3.75, "B. Deployment / Response Realization")
 
     add_box(
         ax,
-        (0.75, 2.58),
+        (0.75, 2.75),
         1.85,
-        0.78,
+        0.82,
         "Dialogue State",
         "history\nCRM features\nprospect signals",
         "#f8fafc",
     )
     add_box(
         ax,
-        (3.05, 2.58),
+        (3.00, 2.75),
         1.85,
-        0.78,
+        0.82,
         "Belief encoder $f_\\psi$",
         "latent belief\n$b_t \\in \\mathbb{R}^d$",
         "#eef2ff",
     )
     add_box(
         ax,
-        (5.45, 2.58),
-        1.55,
-        0.78,
+        (5.35, 2.75),
+        1.70,
+        0.82,
         "Actor head $g_\\theta$",
         "$\\pi_\\theta(a_t\\mid b_t)$",
         "#fee2e2",
     )
     add_box(
         ax,
-        (5.45, 1.37),
-        1.55,
-        0.78,
+        (5.35, 1.50),
+        1.70,
+        0.82,
         "Quantile critic $q_\\phi$",
         "distributional value\n$Z_\\phi^\\pi(b_t)$",
         "#dcfce7",
     )
     add_box(
         ax,
-        (3.05, 0.47),
-        1.85,
+        (2.85, 0.62),
+        2.00,
         0.70,
         "Optimization losses",
         "actor loss\nquantile Huber loss\nentropy bonus",
@@ -193,8 +193,8 @@ def main() -> None:
     )
     add_box(
         ax,
-        (5.45, 0.47),
-        1.55,
+        (5.35, 0.45),
+        1.70,
         0.70,
         "Risk summary",
         "mean\nCVaR$_\\alpha$\ndispersion",
@@ -202,35 +202,35 @@ def main() -> None:
     )
     add_box(
         ax,
-        (8.55, 2.58),
-        1.65,
-        0.78,
+        (8.70, 2.75),
+        1.75,
+        0.82,
         "Macro-action",
         "discover\nqualify\nclose",
         "#fff7ed",
     )
     add_box(
         ax,
-        (12.65, 2.58),
-        1.75,
-        0.78,
+        (14.25, 2.38),
+        1.85,
+        0.82,
         "Environment",
         "sales dialogue\nsimulator",
         "#f3f4f6",
     )
     add_box(
         ax,
-        (12.65, 1.37),
-        1.75,
-        0.78,
+        (14.25, 1.30),
+        1.85,
+        0.82,
         "Reward synthesis",
         "$\\Delta I_t, \\Delta T_t, \\Delta S_t$\n$F_t, O_t, y_t, v_t$",
         "#eef2ff",
     )
     add_box(
         ax,
-        (10.80, 3.12),
-        1.75,
+        (11.15, 3.30),
+        2.05,
         0.58,
         "Response realizer",
         "frontier LLM\nor template policy",
@@ -238,29 +238,28 @@ def main() -> None:
     )
 
     # Main decision path.
-    add_arrow(ax, (2.60, 2.97), (3.05, 2.97))
-    add_arrow(ax, (4.90, 2.97), (5.45, 2.97))
-    add_arrow(ax, (7.00, 2.97), (8.55, 2.97))
-    add_label(ax, (7.78, 3.18), "$a_t$")
-    add_arrow(ax, (10.20, 2.97), (12.65, 2.97))
+    add_arrow(ax, (2.60, 3.16), (3.00, 3.16))
+    add_arrow(ax, (4.85, 3.16), (5.35, 3.16))
+    add_arrow(ax, (7.05, 3.16), (8.70, 3.16))
+    add_label(ax, (7.86, 3.39), "$a_t$")
 
     # Response realization is conditioned by the macro-action, then feeds the environment.
-    add_elbow(ax, [(9.38, 3.36), (9.38, 3.42), (10.80, 3.42)])
-    add_arrow(ax, (11.68, 3.12), (11.68, 2.97))
+    add_elbow(ax, [(9.58, 3.57), (9.58, 3.59), (11.15, 3.59)])
+    add_elbow(ax, [(13.20, 3.59), (15.18, 3.59), (15.18, 3.20)])
 
     # Critic and risk path.
-    add_elbow(ax, [(3.98, 2.58), (3.98, 1.76), (5.45, 1.76)])
-    add_arrow(ax, (6.22, 1.37), (6.22, 1.17))
-    add_arrow(ax, (5.45, 0.82), (4.90, 0.82))
+    add_elbow(ax, [(3.92, 2.75), (3.92, 1.91), (5.35, 1.91)])
+    add_arrow(ax, (6.20, 1.50), (6.20, 1.15))
+    add_arrow(ax, (5.35, 0.80), (4.85, 0.80))
 
-    # Environment feedback has a dedicated middle lane.
-    add_elbow(ax, [(13.52, 2.58), (13.52, 2.20), (13.52, 2.15)])
-    add_arrow(ax, (12.65, 1.76), (7.00, 1.76))
-    add_label(ax, (10.80, 1.98), "$r_t, d_t, o_{t+1}$")
+    # Environment feedback has a dedicated lower lane.
+    add_arrow(ax, (15.18, 2.38), (15.18, 2.12))
+    add_arrow(ax, (14.25, 1.71), (7.05, 1.71))
+    add_label(ax, (10.85, 1.94), "$r_t, d_t, o_{t+1}$")
 
     # Training update is dashed and routed back to the shared encoder lane.
-    add_elbow(ax, [(3.98, 1.17), (3.98, 2.40), (3.98, 2.58)], linestyle=(0, (3, 3)))
-    add_label(ax, (3.98, 2.18), "update")
+    add_elbow(ax, [(3.25, 1.32), (3.25, 2.45), (3.70, 2.45), (3.70, 2.75)], linestyle=(0, (3, 3)))
+    add_label(ax, (3.25, 2.20), "update")
 
     fig.tight_layout()
     fig.savefig(out_dir / "architecture_diagram.png", dpi=240, bbox_inches="tight")
