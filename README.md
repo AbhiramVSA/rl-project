@@ -1,6 +1,10 @@
-# Sales RL Agent
+<p align="center">
+  <img src="assets/sales-rl-mark.png" alt="Sales dialogue policy and risk-control mark" width="200" />
+</p>
 
-This repository contains a script-driven implementation of a risk-sensitive distributional actor-critic for sales dialogue control, together with the paper, synthetic simulator, benchmark tooling, and inference utilities.
+<h1 align="center">Sales RL Agent</h1>
+
+<p align="center">This repository contains a script-driven implementation of a risk-sensitive distributional actor-critic for sales dialogue control, together with the paper, synthetic simulator, benchmark tooling, and inference utilities.</p>
 
 The project is intentionally separated from the presentation repo. The nested `bantr-presentation/` directory is ignored here and remains its own GitHub repository.
 
