@@ -4,6 +4,14 @@ This repository contains a script-driven implementation of a risk-sensitive dist
 
 The project is intentionally separated from the presentation repo. The nested `bantr-presentation/` directory is ignored here and remains its own GitHub repository.
 
+<p align="center">
+  <a href="#repository-layout">Files</a> ·
+  <a href="#environment-setup">Setup</a> ·
+  <a href="#train-the-agent">Training</a> ·
+  <a href="#use-the-trained-agent">Inference</a> ·
+  <a href="#reproduce-paper-assets">Paper assets</a>
+</p>
+
 ## Repository layout
 
 - `paper.tex` and `paper.pdf`: research paper
